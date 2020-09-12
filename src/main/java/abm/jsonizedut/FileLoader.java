@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 import static java.util.logging.Level.FINER;
 
-class FileLoader {
+final class FileLoader {
 
     private static final Logger LOGGER = Logger.getLogger(FileLoader.class.getSimpleName());
 

@@ -7,7 +7,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import static abm.jsonizedut.FileType.*;
 
-public class TestDataLoader {
+public final class TestDataLoader {
 
     private ObjectMapper objectMapper;
     private final FileLoader fileLoader;
@@ -27,23 +27,23 @@ public class TestDataLoader {
         return INSTANCE;
     }
 
-    private <T> T readContent(String jsonContent, Class<T> clazz) throws JsonProcessingException {
+    private <T> T loadContent(String jsonContent, Class<T> clazz) throws JsonProcessingException {
         return objectMapper.readValue(jsonContent, clazz);
     }
 
-    public <T> T readResponse(String filename, Class<T> clazz) throws JsonProcessingException {
-        return readContent(fileLoader.load(filename, RESPONSE), clazz);
+    public <T> T loadResponse(String filename, Class<T> clazz) throws JsonProcessingException {
+        return loadContent(fileLoader.load(filename, RESPONSE), clazz);
     }
 
-    public <T> T readRequest(String filename, Class<T> clazz) throws JsonProcessingException {
-        return readContent(fileLoader.load(filename, REQUEST), clazz);
+    public <T> T loadRequest(String filename, Class<T> clazz) throws JsonProcessingException {
+        return loadContent(fileLoader.load(filename, REQUEST), clazz);
     }
 
-    public <T> T readErrorResponse(String filename, Class<T> clazz) throws JsonProcessingException {
-        return readContent(fileLoader.load(filename, ERROR_RESPONSE), clazz);
+    public <T> T loadErrorResponse(String filename, Class<T> clazz) throws JsonProcessingException {
+        return loadContent(fileLoader.load(filename, ERROR_RESPONSE), clazz);
     }
 
-    public String readContent(String filename, FileType fileType) {
+    public String loadContent(String filename, FileType fileType) {
         return fileLoader.load(filename, fileType);
     }
 

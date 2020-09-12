@@ -26,7 +26,7 @@ class TestDataLoaderSpec extends Specification {
 
     def "readRequest - should read request data"() {
         when:
-        Customer actual = testDataLoader.readRequest("customer.json", Customer)
+        Customer actual = testDataLoader.loadRequest("customer.json", Customer)
 
         then:
         assertData actual
@@ -35,7 +35,7 @@ class TestDataLoaderSpec extends Specification {
 
     def "readResponse - should read response data"() {
         when:
-        Customer actual = testDataLoader.readResponse("customer.json", Customer)
+        Customer actual = testDataLoader.loadResponse("customer.json", Customer)
 
         then:
         assertData actual
@@ -43,7 +43,7 @@ class TestDataLoaderSpec extends Specification {
 
     def "readErrorResponse - should read error response data"() {
         when:
-        Customer actual = testDataLoader.readErrorResponse("customer.json", Customer)
+        Customer actual = testDataLoader.loadErrorResponse("customer.json", Customer)
 
         then:
         assertData actual
@@ -51,7 +51,7 @@ class TestDataLoaderSpec extends Specification {
 
     def "readContent - should read the content of the file"() {
         expect:
-        testDataLoader.readContent("customer.json", FileType.REQUEST) != null
+        testDataLoader.loadContent("customer.json", FileType.REQUEST) != null
     }
 
 }
