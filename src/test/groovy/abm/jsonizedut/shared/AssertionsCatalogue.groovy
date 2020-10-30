@@ -2,6 +2,7 @@ package abm.jsonizedut.shared
 
 import abm.jsonizedut.Customer
 
+
 class AssertionsCatalogue {
 
     static def assertData(Customer actual) {
