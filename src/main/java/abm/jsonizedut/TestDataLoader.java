@@ -43,6 +43,10 @@ public final class TestDataLoader {
         return loadContent(fileLoader.load(filename, ERROR_RESPONSE), clazz);
     }
 
+    public <T> String toJSON(T t) throws JsonProcessingException {
+        return objectMapper.writeValueAsString(t);
+    }
+
     public String loadContent(String filename, FileType fileType) {
         return fileLoader.load(filename, fileType);
     }

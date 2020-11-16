@@ -29,19 +29,21 @@ public class DataAsserter {
         fieldComparisonFailures.addAll(jsonCompareResult.getFieldMissing());
         fieldComparisonFailures.addAll(jsonCompareResult.getFieldUnexpected());
 
-        Predicate<String> dynamicFieldsPredicate = isNotEmpty(dynamicFieldsToExclude) ? $ -> dynamicFieldsToExclude.indexOf($) != -1 : $ -> true;
+        Predicate<FieldComparisonFailure> dynamicFieldsPredicate = isNotEmpty(dynamicFieldsToExclude) ?
+                $ -> dynamicFieldsToExclude.indexOf($.getActual()) == -1 : $ -> true;
 
-        if (isNotEmpty(fieldComparisonFailures)) {
+        List<FieldComparisonFailure> anyAdditionalFieldMismatched = fieldComparisonFailures.stream()
+                .filter(dynamicFieldsPredicate).collect(Collectors.toList());
+
+        if (isNotEmpty(fieldComparisonFailures) && isNotEmpty(anyAdditionalFieldMismatched)) {
             errorStringBuilder = new StringBuilder("Data Mismatched !\n");
             displayResults(jsonCompareResult);
             throw new DataAssertionFailed(errorStringBuilder.toString());
         }
 
-        List<String> anyAdditionalFieldMismatched = fieldComparisonFailures.stream().map(FieldComparisonFailure::getField)
-                .filter(dynamicFieldsPredicate).collect(Collectors.toList());
-
         if (isNotEmpty(anyAdditionalFieldMismatched)) {
-            String mismatchedFieldPaths = String.join("\n", anyAdditionalFieldMismatched);
+            String mismatchedFieldPaths = anyAdditionalFieldMismatched.stream().map(FieldComparisonFailure::getField)
+                    .collect(Collectors.joining("\n"));
             throw new DataAssertionFailed("There are additional fields mismatch. They are :\n" + mismatchedFieldPaths + "\n");
         }
     }
