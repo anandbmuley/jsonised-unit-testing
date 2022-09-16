@@ -17,7 +17,7 @@ publishing {
 }
 
 def jacksonVersion='2.11.0'
-def jsonAssertVersion='1.5.0'
+def jsonAssertVersion='1.5.1'
 
 repositories {
     mavenCentral()
@@ -28,10 +28,10 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    compile "org.skyscreamer:jsonassert:${jsonAssertVersion}"
-    compile "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
-    compile "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:${jacksonVersion}"
-    compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}"
+    implementation "org.skyscreamer:jsonassert:${jsonAssertVersion}"
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:${jacksonVersion}"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}"
     testImplementation "org.codehaus.groovy:groovy-all:2.5.4"
     testImplementation "org.spockframework:spock-core:1.2-groovy-2.5"
 }
