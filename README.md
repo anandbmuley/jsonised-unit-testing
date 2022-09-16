@@ -1,6 +1,8 @@
 # jsonised-unit-testing
 A simple library for effective unit testing containing JSON data
 
+[![CI](https://github.com/anandbmuley/jsonised-unit-testing/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/anandbmuley/jsonised-unit-testing/actions/workflows/main.yml)
+
 ## Pre-Requisites
 
 * Tools needed
